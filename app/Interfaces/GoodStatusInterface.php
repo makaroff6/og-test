@@ -5,7 +5,7 @@ namespace App\Interfaces;
 use App\Enums\GoodStatus;
 use App\Models\Good;
 
-abstract class GoodStatusMoveInterface
+abstract class GoodStatusInterface
 {
   public GoodStatus $statusTo;
 
