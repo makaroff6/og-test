@@ -2,43 +2,43 @@
 
 namespace App\Services;
 
-use App\Interfaces\GoodStatusMove;
-use App\Adapters\ToNewAdapter;
-use App\Adapters\ToSellingAdapter;
-use App\Adapters\ToSoldAdapter;
-use App\Adapters\ToDeleteAdapter;
+use App\Interfaces\GoodStatusInterface;
+use App\Adapters\ToNewBehaviour;
+use App\Adapters\ToSellingBehaviour;
+use App\Adapters\ToSoldBehaviour;
+use App\Adapters\ToDeleteBehaviour;
 use App\Models\Good;
 
 class GoodService
 {
   protected $classModel = Good::class;
 
-  protected $goodStatusMove;
-  protected $newAdapter;
-  protected $sellingAdapter;
-  protected $soldAdapter;
-  protected $deleteAdapter;
+  protected $goodStatusInterface;
+  protected $newBehaviour;
+  protected $sellingBehaviour;
+  protected $soldBehaviour;
+  protected $deleteBehaviour;
 
   public function __construct(
-      GoodStatusMove $goodStatusMove,
-      ToNewAdapter $newAdapter,
-      ToSellingAdapter $sellingAdapter,
-      ToSoldAdapter $soldAdapter,
-      ToDeleteAdapter $deleteAdapter
+      GoodStatusInterface $goodStatusInterface,
+      ToNewBehaviour $newBehaviour,
+      ToSellingBehaviour $sellingBehaviour,
+      ToSoldBehaviour $soldBehaviourr,
+      ToDeleteBehaviour $deleteBehaviour
     ) 
   {
-    $this->goodStatusMove = $goodStatusMove;
-    $this->newAdapter = $newAdapter;
-    $this->sellingAdapter = $sellingAdapter;
-    $this->soldAdapter = $soldAdapter;
-    $this->deleteAdapter = $deleteAdapter;
+    $this->goodStatusInterface = $goodStatusInterface;
+    $this->newBehaviour = $newBehaviour;
+    $this->sellingBehaviour = $sellingBehaviour;
+    $this->soldBehaviour = $soldBehaviour;
+    $this->deleteBehaviour = $deleteBehaviour;
   }
 
   public function create(array $attributes): Good 
   {
     $model = $this->classModel::create($attributes);
-    $this->goodStatusMove->setAdapter($this->newAdapter);
-    $this->goodStatusMove->execute($model);
+    $this->goodStatusInterface->setBehaviour($this->newBehaviour);
+    $this->goodStatusInterface->execute($model);
     $model->fresh();
     return $model;
   }
@@ -48,12 +48,12 @@ class GoodService
     $model = $this->classModel::findOrFail($id);
     $model->update($attributes);
     if ($attributes['count'] > 0) {
-      $adapter = $this->sellingAdapter;
+      $behaviour = $this->sellingBehaviour;
     } else {
-      $adapter = $this->soldAdapter;
+      $behaviour = $this->soldBehaviour;
     }
-    $this->goodStatusMove->setAdapter($adapter);
-    $this->goodStatusMove->execute($model);
+    $this->goodStatusInterface->setBehaviour($behaviour);
+    $this->goodStatusInterface->execute($model);
     $model->fresh();
     return $model;
   }
@@ -61,8 +61,8 @@ class GoodService
   public function delete(int $id)
   {
     $model = $this->classModel::findOrFail($id);
-    $this->goodStatusMove->setAdapter($this->deleteAdapter);
-    $this->goodStatusMove->execute($model);
+    $this->goodStatusInterface->setBehaviour($this->deleteBehaviour);
+    $this->goodStatusInterface->execute($model);
     $model->delete();
   }
 }
