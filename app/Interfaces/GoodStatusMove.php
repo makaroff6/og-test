@@ -7,8 +7,19 @@ use App\Models\Good;
 
 class GoodStatusMove
 {
-  public function execute(GoodStatusMoveInterface $interface, Good $good): void 
+    /**
+    * @var GoodStatusMoveInterface
+    */
+    private $adapter;
+    
+    public function setAdapter(GoodStatusMoveInterface $adapter): self
+    {
+        $this->adapter = $adaper;
+        return $this;
+    }
+    
+  public function execute(Good $good): void 
   {
-    $interface->execute($good);
+    $this->adapter->execute($good);
   }
 }
