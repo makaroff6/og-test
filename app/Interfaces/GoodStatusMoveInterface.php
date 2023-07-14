@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Strategies;
+namespace App\Interfaces;
 
 use App\Enums\GoodStatus;
 use App\Models\Good;
