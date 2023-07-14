@@ -37,7 +37,8 @@ class GoodService
   public function create(array $attributes): Good 
   {
     $model = $this->classModel::create($attributes);
-    $this->goodStatusMove->execute($this->newAdapter, $model);
+    $this->goodStatusMove->setAdapter($this->newAdapter);
+    $this->goodStatusMove->execute($model);
     $model->fresh();
     return $model;
   }
@@ -51,7 +52,8 @@ class GoodService
     } else {
       $adapter = $this->soldAdapter;
     }
-    $this->goodStatusMove->execute($adapter, $model);
+    $this->goodStatusMove->setAdapter($adapter);
+    $this->goodStatusMove->execute($model);
     $model->fresh();
     return $model;
   }
@@ -59,7 +61,8 @@ class GoodService
   public function delete(int $id)
   {
     $model = $this->classModel::findOrFail($id);
-    $this->goodStatusMove->execute($this->deleteAdapter, $model);
+    $this->goodStatusMove->setAdapter($this->deleteAdapter);
+    $this->goodStatusMove->execute($model);
     $model->delete();
   }
 }
