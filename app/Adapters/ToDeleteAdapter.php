@@ -9,12 +9,11 @@ use Exception;
 
 class ToDeleteAdapter extends GoodStatusMoveInterface
 {
-  public GoodStatus $statusFrom = GoodStatus::NEW;
   public GoodStatus $statusTo = GoodStatus::DELETED;
 
   public function execute(Good $good): void 
   {
-    if ($good->status !== $this->statusFrom) {
+    if ($good->status !== $this->statusTo) {
       throw new Exception('Неверный статус');
     }
     $good->status = $this->statusTo;
