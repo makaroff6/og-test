@@ -7,8 +7,8 @@ use App\Models\Good;
 
 class GoodStatusMove
 {
-  public function execute(GoodStatusMoveInterface $strategy, Good $good): void 
+  public function execute(GoodStatusMoveInterface $interface, Good $good): void 
   {
-    $strategy->execute($good);
+    $interface->execute($good);
   }
 }
