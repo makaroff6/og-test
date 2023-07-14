@@ -1,7 +1,7 @@
 
 <?php
 
-namespace App\Interfaces;
+namespace App\Adapter;
 
 use App\Models\Good;
 
@@ -10,11 +10,11 @@ class GoodStatusMove
   /**
   * @var GoodStatusMoveInterface
   */
-  private $adapter;
+  private $behaviour;
     
-  public function setAdapter(GoodStatusMoveInterface $adapter): self
+  public function setBehaviour(GoodStatusMoveInterface $behaviour): self
   {
-    $this->adapter = $adaper;
+    $this->behaviour = $behaviour;
     return $this;
   }
     
