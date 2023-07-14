@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Strategies\GoodStatusMove;
+use App\Interfaces\GoodStatusMove;
 use App\Adapters\ToNewAdapter;
 use App\Adapters\ToSellingAdapter;
 use App\Adapters\ToSoldAdapter;
