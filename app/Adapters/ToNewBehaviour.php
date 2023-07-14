@@ -4,10 +4,10 @@ namespace App\Adapters;
 
 use App\Enums\GoodStatus;
 use App\Models\Good;
-use App\Strategies\GoodStatusMoveInterface;
+use App\Interfaces\GoodStatusInterface;
 use Exception;
 
-class ToNewAdapter extends GoodStatusMoveInterface
+class ToNewBehaviour extends GoodStatusInterface
 {
   public GoodStatus $statusTo = GoodStatus::SOLD;
 
