@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use App\Enums\GoodStatus;
-use App\Interfaces\GoodInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Good extends Model implements GoodInterface
+class Good extends Model
 {
     use HasFactory;
 

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Interfaces\GoodStatusInterface;
+use App\Contracts\GoodStatusInterface;
 use App\Adapters\ToNewBehaviour;
 use App\Adapters\ToSellingBehaviour;
 use App\Adapters\ToSoldBehaviour;

@@ -4,10 +4,9 @@ namespace App\Adapters;
 
 use App\Enums\GoodStatus;
 use App\Models\Good;
-use App\Interfaces\GoodStatusInterface;
 use Exception;
 
-class GoodStatusInterface extends GoodStatusInterface
+class GoodStatusInterface
 {
   public GoodStatus $statusTo = GoodStatus::SOLD;
 

@@ -4,10 +4,9 @@ namespace App\Adapters;
 
 use App\Enums\GoodStatus;
 use App\Models\Good;
-use App\Interfaces\GoodStatusInterface;
 use Exception;
 
-class ToDeleteBehaviour extends GoodStatusInterface
+class ToDeleteBehaviour
 {
   public GoodStatus $statusTo = GoodStatus::DELETED;
 

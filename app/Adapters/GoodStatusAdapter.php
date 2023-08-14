@@ -1,15 +1,12 @@
-
 <?php
 
 namespace App\Adapter;
 
 use App\Models\Good;
+use App\Contracts\GoodStatusInterface;
 
-class GoodStatusAdapter
+class GoodStatusAdapter extends GoodStatusInterface
 {
-  /**
-  * @var GoodStatusInterface
-  */
   private $behaviour;
     
   public function setBehaviour(GoodStatusInterface $behaviour): self
