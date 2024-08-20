@@ -8,15 +8,15 @@ use App\Contracts\GoodStatusInterface;
 class GoodStatusAdapter extends GoodStatusInterface
 {
   private $behaviour;
-    
+
   public function setBehaviour(GoodStatusInterface $behaviour): self
   {
     $this->behaviour = $behaviour;
     return $this;
   }
-    
-  public function execute(Good $good): void 
+
+  public function execute(Good $good): void
   {
-    $this->adapter->execute($good);
+    $this->behaviour->execute($good);
   }
 }

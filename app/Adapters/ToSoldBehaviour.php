@@ -6,11 +6,11 @@ use App\Enums\GoodStatus;
 use App\Models\Good;
 use Exception;
 
-class GoodStatusInterface
+class ToSoldBehaviour
 {
   public GoodStatus $statusTo = GoodStatus::SOLD;
 
-  public function execute(Good $good): void 
+  public function execute(Good $good): void
   {
     if ($good->status === $this->statusTo) {
       throw new Exception('Неверный статус');
